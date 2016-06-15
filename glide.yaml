@@ -1,0 +1,4 @@
+package: github.com/mh-cbon/build-them-all
+import:
+- package: github.com/urfave/cli
+  version: ^1.17.0
