@@ -4,6 +4,8 @@ Bin util to build go programs to multiple targets
 
 # Install
 
+You can grab a pre-built binary file in the [releases page](https://github.com/mh-cbon/build-them-all/releases)
+
 ```sh
 mkdir -p $GOPATH/github.com/mh-cbon
 cd $GOPATH/github.com/mh-cbon
