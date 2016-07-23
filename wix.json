@@ -1,0 +1,26 @@
+{
+  "product": "build-them-all",
+  "company": "mh-cbon",
+  "license": "LICENSE",
+  "upgrade-code": "",
+  "files": {
+    "guid": "",
+    "items": [
+      "build-them-all.exe"
+    ]
+  },
+  "env": {
+    "guid": "",
+    "vars": [
+      {
+        "name": "PATH",
+        "value": "[INSTALLDIR]",
+        "permanent": "no",
+        "system": "no",
+        "action": "set",
+        "part": "last"
+      }
+    ]
+  },
+  "shortcuts": {}
+}
