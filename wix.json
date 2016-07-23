@@ -2,15 +2,15 @@
   "product": "build-them-all",
   "company": "mh-cbon",
   "license": "LICENSE",
-  "upgrade-code": "",
+  "upgrade-code": "2545491D-6311-4ACE-9DBF-C0B23F5BA435",
   "files": {
-    "guid": "",
+    "guid": "43B2CCEA-A666-4E50-B371-3CD2764E2EDA",
     "items": [
       "build-them-all.exe"
     ]
   },
   "env": {
-    "guid": "",
+    "guid": "EA0805A3-D87C-445A-B40F-D4A976EC63DB",
     "vars": [
       {
         "name": "PATH",
