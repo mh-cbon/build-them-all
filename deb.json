@@ -1,7 +1,7 @@
 {
   "name": "build-them-all",
   "maintainer": "mh-cbon <mh-cbon@users.noreply.github.com>",
-  "description": "Rm globed files",
+  "description": "Build go programs to multiple targets",
   "changelog-cmd": "changelog debian --vars='{\"name\":\"!name!\"}'",
   "homepage": "http://github.com/mh-cbon/!name!",
   "files": [
