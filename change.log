@@ -1,4 +1,16 @@
 
+0.0.4
+
+  * travis: fix wrong deploy key
+  * wix: fix missing guid
+  * deb: fix description field
+
+  - mh-cbon <mh-cbon@users.noreply.github.com>
+
+-- mh-cbon <mh-cbon@users.noreply.github.com>; Sat, 23 Jul 2016 20:28:32 +0200
+
+
+
 0.0.3
 
   * packaging: add deb/rpm/msi support
