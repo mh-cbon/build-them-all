@@ -1,0 +1,38 @@
+
+UNRELEASED
+
+  * README: update install section
+  * release: update script
+  * release script
+  * README
+
+  - mh-cbon <mh-cbon@users.noreply.github.com>
+
+-- mh-cbon <mh-cbon@users.noreply.github.com>; Sat, 23 Jul 2016 20:21:18 +0200
+
+
+
+0.0.2
+
+  * Improve release scripts
+
+  - mh-cbon <mh-cbon@users.noreply.github.com>
+
+-- mh-cbon <mh-cbon@users.noreply.github.com>; Thu, 16 Jun 2016 21:22:15 +0200
+
+
+
+0.0.1
+
+  * go fmt
+  * version update
+  * add publish script
+  * Merge branch 'master' of github.com:mh-cbon/build-them-all
+  * Initial commit
+  * init
+
+  - mh-cbon <mh-cbon@users.noreply.github.com>
+
+-- mh-cbon <mh-cbon@users.noreply.github.com>; Wed, 15 Jun 2016 17:01:35 +0200
+
+
