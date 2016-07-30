@@ -22,5 +22,11 @@
       }
     ]
   },
-  "shortcuts": {}
+  "shortcuts": {},
+  "choco": {
+    "description": "Bin util to build go programs to multiple targets",
+    "project-url": "https://github.com/mh-cbon/build-them-all",
+    "tags": "go",
+    "license-url": "https://github.com/mh-cbon/build-them-all/blob/master/LICENSE"
+  }
 }

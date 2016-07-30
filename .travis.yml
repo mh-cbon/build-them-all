@@ -8,19 +8,19 @@ go:
   - tip
 
 env:
-- PROJECT_NAME=build-them-all
+  - MYAPP=archive
+  - MYEMAIL=mh-cbon@users.noreply.github.com
+  global:
+    secure: o2fmbpGKdz+++eyhFYhYumi51shnpBn2X/SSEi74LmY7/A2a+1CBxq8hVkNFDko38uuqrL1wEdIAUPl6lNqPscqZICJQkXyN6UspqSuk6Pk9Z14w0HI7MUQJuBZq75fIcnycBWOrRj1TlChHQuiVoruSsdgHMm0bhoHVOeZE3T5rHbqDDz0XdBtNoAodLX8eoi7GR48k29QEPyQprWJfb6ImB6T4aiFeKbsGmU1YdLgyqxAGHwnNYbedv6oNL8z/qJygMe39r+e+4hmlr+yLVnN7NHR3zqqbl+xxSFHvMKWoi5T/Ae28GcZYNrngMGjek9UWJVZ/fQY2TwGsqaddFJPWViqjnlFXn2TCUU1RsKDcQ1IApeqUiR5z2YdILjvPUxfI7InMuSFUeyYld8KuCndqWMOUqtxVllnwSWOaRQA6J9OZxSfWbJWA7WpSHwje1Nc/urQara2g/OhBV6mnC7QYG1gbSHdn3Gs11eMLlvYRE4l2bnNpP5htaVVCEquLSctyyyZsST7solN7E8p5Fl7IHbwGMRGeyV3IOAPY3EiwPibVRq+ZzOeT6F3QbD1VAWcDOKX/zb3fzbRkWyuVekBOITycdZAjV/M+tCtmLxnvAz0tdppN+0mn8s7Pr8OSeSJV7vLeYvUrUhN8uFtGieyQ72+fEgmcf5jYmHGfMb4=
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install build-essential lintian -y
   - mkdir -p ${GOPATH}/bin
   - cd ~
   - curl https://glide.sh/get | sh
-  - curl -L https://raw.githubusercontent.com/mh-cbon/latest/master/install.sh | GH=mh-cbon/changelog sh -xe
-  - curl -L https://raw.githubusercontent.com/mh-cbon/latest/master/install.sh | GH=mh-cbon/go-bin-deb sh -xe
 
 install:
-  - cd $GOPATH/src/github.com/mh-cbon/$PROJECT_NAME
+  - cd $GOPATH/src/github.com/mh-cbon/$MYAPP
   - glide install
   - go install
 
@@ -29,24 +29,25 @@ script: echo "pass"
 before_deploy:
   - mkdir -p build/{386,amd64}
   - mkdir -p pkg-build/{386,amd64}
-  - GOOS=linux GOARCH=386 go build --ldflags "-X main.VERSION=${TRAVIS_TAG}" -o build/386/$PROJECT_NAME main.go
-  - GOOS=linux GOARCH=amd64 go build --ldflags "-X main.VERSION=${TRAVIS_TAG}" -o build/amd64/$PROJECT_NAME main.go
-  - go-bin-deb generate -a 386 --version ${TRAVIS_TAG} -w pkg-build/386/ -o ${TRAVIS_BUILD_DIR}/$PROJECT_NAME-386.deb
-  - go-bin-deb generate -a amd64 --version ${TRAVIS_TAG} -w pkg-build/amd64/ -o ${TRAVIS_BUILD_DIR}/$PROJECT_NAME-amd64.deb
-  - rm -fr pkg-build/
-  - mkdir -p pkg-build/{386,amd64}
-  - docker run -v $PWD:/docker fedora /bin/sh -c "cd /docker && sh ./docker.sh ${TRAVIS_TAG} $PROJECT_NAME"
-  - sudo chown travis:travis $PROJECT_NAME-{386,amd64}.rpm
+  - GOOS=linux GOARCH=386 go build --ldflags "-X main.VERSION=${TRAVIS_TAG}" -o build/386/$MYAPP main.go
+  - GOOS=linux GOARCH=amd64 go build --ldflags "-X main.VERSION=${TRAVIS_TAG}" -o build/amd64/$MYAPP main.go
+  - curl -L https://raw.githubusercontent.com/mh-cbon/go-bin-deb/master/create-pkg.sh | GH=mh-cbon/$MYAPP sh -xe
+  - curl -L https://raw.githubusercontent.com/mh-cbon/go-bin-rpm/master/create-pkg.sh | GH=mh-cbon/$MYAPP sh -xe
+
+after_deploy:
+  - curl -L https://raw.githubusercontent.com/mh-cbon/go-bin-deb/master/setup-repository.sh | GH=mh-cbon/$MYAPP EMAIL=$MYEMAIL sh -xe
+  - curl -L https://raw.githubusercontent.com/mh-cbon/go-bin-rpm/master/setup-repository.sh | GH=mh-cbon/$MYAPP EMAIL=$MYEMAIL sh -xe
 
 deploy:
   provider: releases
   api_key:
     secure: MzJVLXom5Z/vwiL0lAWfe84d0OFWIVgjrIpyy6nMfnFDQiuJrtnpJVSxc59bBl8UyK+MBMgEnVWoIi3q6nKQZAEAKRZjqoXVzSh3uwtEhLBhSdBcP+wPnmtOBf3hOTQIx32hZWkz+bMIjKh3EDet+85VnznLT7zUtSgr5wKq35KGJuieWYvRhYy2DKsT4dqzeL8jQuGsefVM0gM7YArjx34LV7H7d7zlLtVSr8RJ/vDDwb8zOZxgmhd2ZrlK9Pe42XBModIAI1nFBNeuQuBikXYh7gexLE6Btgk3QnhwuzAGPW+WcAtclUaBcgBzBwPDPVAvz5ikydC0pdc8jimoDsVWNbHpqyuLBEBh2Vh8sy7/u3Ny9tqyl/K+K1FDyOKwEaFLS/Vmdvmj8phw1g2zNwbQ4n7OtiwNhy/CjTksqqhghhDCYeUdbZiNQE/6Jfz6z+pvMUt7SO2Y+ph3QNPxgpfx0xvyZ9Lk2CSU5Tu0iSOdhy/RrDGh17ZnI847dfnKZjluzugCpTprNtUXfQlnxXoGr4ihfv3ywlaSYUJ+dzTe+X8pwU0lUyGPIf+/fknvqB2RqwLAr0MFtk8DjC9pK4F5oZJEicnPvWHvtQ65H+h0GxlPDvTb2fDyMV1J4dXDzqqfqjmfbs3zOnuH6pIlZ2Ry26q930UCs9ykOuyC+PM=
+  file_glob: true
   file:
-    - $PROJECT_NAME-386.deb
-    - $PROJECT_NAME-amd64.deb
-    - $PROJECT_NAME-386.rpm
-    - $PROJECT_NAME-amd64.rpm
+    - $MYAPP-386.deb
+    - $MYAPP-amd64.deb
+    - $MYAPP-386.rpm
+    - $MYAPP-amd64.rpm
   skip_cleanup: true
   on:
     tags: true

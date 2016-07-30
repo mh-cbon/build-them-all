@@ -6,8 +6,23 @@ Bin util to build go programs to multiple targets
 
 Pick an msi package [here](https://github.com/mh-cbon/build-them-all/releases)!
 
-__deb/rpm__
+__chocolatey__
 
+```sh
+choco install build-them-all -y
+```
+
+__deb/ubuntu/rpm repositories__
+
+```sh
+wget -O - https://raw.githubusercontent.com/mh-cbon/latest/master/source.sh \
+| GH=mh-cbon/build-them-all sh -xe
+# or
+curl -L https://raw.githubusercontent.com/mh-cbon/latest/master/source.sh \
+| GH=mh-cbon/build-them-all sh -xe
+```
+
+__deb/ubuntu/rpm packages__
 ```sh
 curl -L https://raw.githubusercontent.com/mh-cbon/latest/master/install.sh \
 | GH=mh-cbon/build-them-all sh -xe
