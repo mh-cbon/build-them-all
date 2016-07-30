@@ -1,5 +1,19 @@
 # Changelog - build-them-all
 
+### 0.0.8
+
+__Changes__
+
+- travis: fix yaml format
+
+__Contributors__
+
+- mh-cbon
+
+Released by mh-cbon, Sat 30 Jul 2016 -
+[see the diff](https://github.com/mh-cbon/build-them-all/compare/0.0.7...0.0.8#diff)
+______________
+
 ### 0.0.7
 
 __Changes__
