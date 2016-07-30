@@ -1,5 +1,19 @@
 # Changelog - build-them-all
 
+### 0.0.6
+
+__Changes__
+
+- packaging: fix travis key
+
+__Contributors__
+
+- mh-cbon
+
+Released by mh-cbon, Sat 30 Jul 2016 -
+[see the diff](https://github.com/mh-cbon/build-them-all/compare/0.0.5...0.0.6#diff)
+______________
+
 ### 0.0.5
 
 __Changes__
